@@ -613,13 +613,34 @@ function testCat(cat: Cat) {
 - 父类可以断言为子类
 - 想要相互断言 只要相互兼容即可
 
+## 双重断言
 
+如果使用了双重断言 可以打破「想要相互断言 只要相互兼容即可」的限制 可以将任何类型断言为另一个类型
 
+```js
+// 如果是这种双重断言 十有八九都是错的 因为会导致运行时错误
+return cat as any as Fish
+```
 
+**迫不得已的情况下 不要用双重断言**
 
+## 类型断言vs类型转换
 
+类型断言只会影响ts编译时的类型 编译结果中会被删除
 
+类型断言不是类型转换 不会真正影响到变量的类型
 
+需要类型转换 可以直接调用类型转换的方法
+
+```js
+function toBoolean(something: any): boolean {
+	// return something as boolean;
+  return Boolean(something)
+}
+
+toBoolean(1); /* 1 */
+toBoolean(1); /* true */
+```
 
 
 
