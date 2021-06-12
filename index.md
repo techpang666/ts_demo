@@ -531,10 +531,87 @@ const tom = getCacheData('tom') as Cat;
 tom.run();
 ```
 
+## 类型断言的限制
 
+1. 联合类型可以被断言为其中的一种类型
+2. 父类可以被断言为子类
+3. 任何类型都可以被断言为any
+4. any可以被断言为任何类型
 
+并不是任何类型都可以断言为另一种类型的
 
+如果相互兼容的话 可以相互断言
 
+类型之间的对比只会比较它们最终的结构 会忽略掉它们定义时的关系
+
+```js
+interface Animal {
+	name: string;
+}
+
+interface Cat {
+	name: string;
+	run(): void;
+}
+
+let tom: Cat = {
+	name: 'tom',
+	run: () => {
+		console.log(666);
+	},
+};
+
+// Cat类型包含了Animal类型的所有属性
+let animal: Animal = tom;
+```
+
+```js
+interface Animal {
+	name: string;
+}
+
+// 继承Animal父类就可以了
+interface Cat extends Animal {
+	run(): void;
+}
+
+let tom: Cat = {
+	name: 'tom',
+	run: () => {
+		console.log(666);
+	},
+};
+```
+
+这就像是面向对象编程中 我们可以将子类实例赋值给父类的变量了
+
+ts专业的说法就是 Animal兼容了Cat
+
+```js
+interface Animal {
+	name: string;
+}
+
+interface Cat {
+	name: string;
+	run(): void;
+}
+
+// 相互进行兼容
+function testAnimal(animal: Animal) {
+	// 这里是因为父类可以被断言为子类
+	return animal as Cat;
+}
+
+// 这里因为子类已经继承了父类的属性和方法 断言为父类就不会有任何问题
+function testCat(cat: Cat) {
+	return cat as Animal;
+}
+```
+
+- 子类可以断言为父类
+- 父类可以断言为子类
+- 想要相互断言 只要相互兼容即可
 
 
 
