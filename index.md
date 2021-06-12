@@ -513,8 +513,23 @@ window.num = 1
 
 不要滥用`as any` 也不要否定他的作用 在类型的严格性和开发的便利中掌握平衡
 
+### 将any断言为一个具体的类型
 
+```js
+// 历史遗留代码 返回值是any
+function getCacheData(key: string): any {
+	return (window as any).cache[key];
+}
 
+interface Cat {
+	name: string;
+	run(): void;
+}
+
+// 我们可以断言为Cat类型 这样就明确tom的类型 对它访问也就有了代码提示 提高代码的可维护性
+const tom = getCacheData('tom') as Cat;
+tom.run();
+```
 
 
 
