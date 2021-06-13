@@ -1,37 +1,11 @@
 
 /**
- * @description 只读属性
+ * @description 
  */
 
-// 只在创建时候赋值 可以使用readonly定义只读属性
-interface Person {
-  readonly id: number
-	name: string;
-	age?: number;
-	[propName: string]: any;
-}
-
-let demo: Person = {
-  id: 666,
-	name: 'tom',
-  gendr: 'man'
-};
-
-demo.id = 999 /* 初始化后又赋值就报错了 */
-
-// 只读的约束在于第一次给(对象)赋值的时候 不是第一次给只读属性赋值的时候
-let demo: Person = {
-	name: 'tom',
-  gendr: 'man'
-};
-
-// 这里会出现两个报错
-// 给tom赋值的时候 没有给id赋值
-// 给tom.id赋值的时候 由于它是只读属性 就报错了
-demo.id = 999
 
 /**
- * @description 数组的类型
+ * @description 
  */
 
 // 类型[]表示法
