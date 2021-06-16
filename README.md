@@ -12,5 +12,20 @@ tsc test.ts
 cat -n test.js
 ```
 
+```bash
+# vscode自动编译
+
+# 生成配置文件(tsconfig.json)
+tsc --init
+
+# 修改tsconfig.json配置
+"outDir": "./js",
+"strict": false,
+
+# 启动监视任务
+
+# 终端 -> 运行任务 -> 监视tsconfig.json
+```
+
 ------
 ![end](https://gitee.com/techpang/img_emoji_libs/raw/master/img_bed/markdown_images/end.jpg '富婆加我吧不想努力了')

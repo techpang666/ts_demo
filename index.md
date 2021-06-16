@@ -3,6 +3,8 @@
 
 ## 体验一下ts
 
+TypeScript里的类型注解(person: string)是一种轻量级的为函数或变量添加约束的方式
+
 ```js
 // 在ts中通过:指定变量类型
 function sayHello(person: string) {
@@ -688,7 +690,39 @@ toBoolean(1); /* 1 */
 toBoolean(1); /* true */
 ```
 
+## 类
 
+```js
+// ts的类只是一个语法糖(本质还是js函数的实现fn()())
+class User {
+	// 定义一些字段(接口需要的字段)
+	fullName: string;
+	firstName: string;
+	lastName: string;
+	// 构造方法constructor是一种用于创建和初始化class创建的对象的特殊方法 一个类中只能有一个
+	// 在一个构造方法中可以使用super关键字来调用一个父类的构造方法
+	constructor(firstName: string, lastName: string) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.fullName = firstName + ' ' + lastName;
+	}
+}
+
+// 定义个接口
+interface Person {
+	firstName: string;
+	lastName: string;
+}
+
+// 传入Person类型的参数
+function getName(person: Person) {
+	return person.firstName + ' ' + person.lastName;
+}
+
+// 构造一个user
+let user = new User('tom', 'cat');
+console.log(getName(user));
+```
 
 
 
