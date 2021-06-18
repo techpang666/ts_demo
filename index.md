@@ -151,6 +151,24 @@ demo.myName.sayHello('name');
 let demo;
 ```
 
+## 对象类型
+
+输入输出都是对象类型
+
+```js
+function getObj(obj: object): object {
+	console.log(obj);
+	return {
+		name: 'demo',
+		age: 18,
+	};
+}
+
+console.log(getObj({ name: 'test', age: '27' }));
+console.log(getObj(new Number(111))); /* 构造函数 */
+console.log(getObj(String)); /* 内置对象 */
+```
+
 ## 类型推导
 
 ```js

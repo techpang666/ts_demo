@@ -1,5 +1,9 @@
-function demo() {
-    console.log(666); /* 666 */
-    return;
+function getObj(obj) {
+    console.log(obj);
+    return {
+        name: 'demo',
+        age: 18
+    };
 }
-console.log(demo()); /* undefined */
+// console.log(getObj({ name: 'test', age: '27' }));
+console.log(getObj(new Number(111)));
