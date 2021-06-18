@@ -5,6 +5,10 @@
 
 TypeScript里的类型注解(person: string)是一种轻量级的为函数或变量添加约束的方式
 
+静态分析(传入的参数不符合类型会有提示)
+
+智能提示(调用接口的时候 会有代码提示 避免写错)
+
 ```js
 // 在ts中通过:指定变量类型
 function sayHello(person: string) {
@@ -80,8 +84,10 @@ js中没有空值的概念 ts中可以通过void表示没有返回值的函数
 
 ```js
 function demo(): void {
-	console.log(666);
+	console.log(666); /* 666 */
+	return
 }
+console.log(demo()); /* undefined */
 ```
 
 ```js
@@ -306,6 +312,10 @@ demo.id = 999
 
 ## 数组的类型
 
+数组两种定义方式
+- arr: number[]
+- arr: Array<number>
+
 ```js
 // 类型[]表示法
 let arr: number[] = [1, 8, 5, 6, 9]
@@ -378,6 +388,12 @@ interface IArguments {
 ```js
 // 用any表示数组中允许出现的任意类型
 let arr: any[] = ['name', 18, {key: 'demo'}]
+```
+
+坏处是没有提示错误 例如下标为0的元素为字符串型 没有数值型的方法
+
+```js
+console.log(arr[0].split(''));
 ```
 
 ## 函数的类型
@@ -830,6 +846,42 @@ let user = new User('tom', 'cat');
 console.log(getName(user));
 ```
 
+## 元组类型
+
+一开始数组的数据类型和数据个数都是定义好的
+
+使用元组类型的时候 可以调用相关的方法
+
+```js
+let arr:[string, number, boolean] = ['demo', 18.666, true]
+console.log(arr);
+console.log(arr[0].split(''));
+console.log(arr[1].toFixed(2));
+console.log(arr[2].valueOf());
+```
+
+## 枚举类型
+
+常用 个数固定的数据
+
+元素有自己的编号
+
+默认从0开始递增 可以手动赋值 元素的值可以为中文 但不建议
+
+在知道元素的值的时候 可以获取元素名
+
+```js
+enum Color {
+	red = 1,
+	green = 100,
+	blue,
+}
+
+const color: Color = Color.green;
+console.log(color); /* 100 */
+console.log(Color.green, Color.red, Color.blue); /* 100 1 101 */
+console.log(Color[0]); /* undefined */
+```
 
 
 
@@ -847,5 +899,5 @@ console.log(getName(user));
 
 
 
-
-
+------
+![end](https://gitee.com/techpang/img_emoji_libs/raw/master/img_bed/markdown_images/end.jpg '富婆加我吧不想努力了')
