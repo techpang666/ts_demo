@@ -174,6 +174,7 @@ console.log(getObj(String)); /* 内置对象 */
 ```js
 // ts在没有明确指定类型的时候会推测出一个类型
 let demo = 'demo';
+demo = 666 /* 会报错 不可以赋值过程中改变类型 */
 ```
 
 ```js
@@ -181,6 +182,7 @@ let demo = 'demo';
 // 都会被推断为any类型 不会被类型检查
 let demo;
 demo = 666;
+demo = '666';
 ```
 
 ## 联合类型
@@ -568,6 +570,21 @@ console.log(reverse(123), reverse('demo'));
 手动指定一个值的类型
 
 值 as 类型
+
+```js
+// 告诉编辑器我是什么类型 也知道自己在干嘛
+function getStr(str: number | string): number {
+	if ((str as string).length) {
+		// 如果类型是string
+		return (str as string).length;
+	} else {
+		// 如果类型是number
+		return str.toString().length;
+	}
+}
+
+console.log(getStr(666));
+```
 
 ### 将一个联合类型断言为其中一个类型
 
